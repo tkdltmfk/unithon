@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
     String[] results;
     int analzeresults;
     int set;
-    boolean running;
-    Thread thread;
+    boolean running = false;
     VoiceRecognizer voiceRecognizer;
     Handler michandler;
     VoiceRecoder recoder;
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         imgview = (ImageView) findViewById(R.id.imageView);
         tv_musicName = (TextView) findViewById(R.id.musicName);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 1);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -115,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
                         else if (analzeresults == 0) set = 2;
                         else if (analzeresults < 0) set = 3;
 
-                        music.stop();
+                        if(running == true) music.stop();
+                        running = true;
                         music = MediaPlayer.create(context, mu[set]);
                         music.setLooping(true);
                         music.start();
