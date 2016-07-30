@@ -18,6 +18,12 @@ public class AnalyzeEmotion {
         int happy7 = input.indexOf("좋은");
         int happy8 = input.indexOf("좋아");
         int happy9 = input.indexOf("좋다");
+        int happy10 = input.indexOf("뿌듯");
+        int happy11 = input.indexOf("기뻐");
+        int happy12 = input.indexOf("흥미");
+        int happy13 = input.indexOf("따뜻");
+        int happy14 = input.indexOf("친절");
+
         int sad1 = input.indexOf("슬피");
         int sad2 = input.indexOf("슬픈");
         int sad3 = input.indexOf("슬퍼");
@@ -26,6 +32,13 @@ public class AnalyzeEmotion {
         int sad6 = input.indexOf("힘든");
         int sad7 = input.indexOf("힘드");
         int sad8 = input.indexOf("좋냐");
+        int sad9 = input.indexOf("우울");
+        int sad10 = input.indexOf("무서");
+        int sad11 = input.indexOf("피곤");
+        int sad12 = input.indexOf("지친");
+        int sad13 = input.indexOf("지쳐");
+        int sad14 = input.indexOf("졸립");
+
 
         while (happy1 != -1) {
             happy1 = input.indexOf("기쁘", happy1 + 1);
@@ -63,6 +76,26 @@ public class AnalyzeEmotion {
             happy9 = input.indexOf("좋다", happy9 + 1);
             counthappy++;
         }
+        while (happy10 != -1) {
+            happy10 = input.indexOf("뿌듯", happy10 + 1);
+            counthappy++;
+        }
+        while (happy11 != -1) {
+            happy11 = input.indexOf("기뻐", happy11 + 1);
+            counthappy++;
+        }
+        while (happy12 != -1) {
+            happy12 = input.indexOf("흥미", happy12 + 1);
+            counthappy++;
+        }
+        while (happy13 != -1) {
+            happy13 = input.indexOf("따뜻", happy13 + 1);
+            counthappy++;
+        }
+        while (happy14 != -1) {
+            happy14 = input.indexOf("친절", happy14 + 1);
+            counthappy++;
+        }
 
         while (sad1 != -1) {
             sad1 = input.indexOf("슬피", sad1 + 1);
@@ -93,7 +126,31 @@ public class AnalyzeEmotion {
             countsad++;
         }
         while (sad8 != -1) {
-            sad8 = input.indexOf("좋냐냐", sad8 + 1);
+            sad8 = input.indexOf("좋냐", sad8+ 1);
+            countsad++;
+        }
+        while (sad9 != -1) {
+            sad9 = input.indexOf("우울", sad9+ 1);
+            countsad++;
+        }
+        while (sad10 != -1) {
+            sad10 = input.indexOf("무서", sad10+ 1);
+            countsad++;
+        }
+        while (sad11 != -1) {
+            sad11 = input.indexOf("피곤", sad11+ 1);
+            countsad++;
+        }
+        while (sad12 != -1) {
+            sad12 = input.indexOf("지친", sad12+ 1);
+            countsad++;
+        }
+        while (sad13 != -1) {
+            sad13 = input.indexOf("지쳐", sad13+ 1);
+            countsad++;
+        }
+        while (sad14 != -1) {
+            sad14 = input.indexOf("졸립", sad14+ 1);
             countsad++;
         }
 
