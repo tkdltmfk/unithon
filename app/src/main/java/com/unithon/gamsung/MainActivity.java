@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         else if (analzeresults == 0) set = 2;
                         else if (analzeresults < 0) set = 3;
 
+                        music.stop();
                         music = MediaPlayer.create(context, mu[set]);
                         music.setLooping(true);
                         music.start();
