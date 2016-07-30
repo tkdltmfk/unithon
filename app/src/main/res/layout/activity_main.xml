@@ -5,7 +5,8 @@
     android:id="@+id/main_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.unithon.gamsung.MainActivity">
+    tools:context="com.unithon.gamsung.MainActivity"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="@color/background"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <com.unithon.gamsung.NotoTextView
@@ -39,7 +40,8 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/background">
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
@@ -69,6 +71,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#323232"
-        android:fitsSystemWindows="true"></android.support.design.widget.NavigationView>
+        android:fitsSystemWindows="true">
+
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     String[] results;
     int analzeresults;
     int set;
+    int count;
     boolean running = false;
     VoiceRecognizer voiceRecognizer;
     Handler michandler;
@@ -82,27 +83,28 @@ public class MainActivity extends AppCompatActivity {
         editor = preferences.edit();
         sqliteHelper = new SqliteHelper(this, "db.db", null, 1);
         final Cursor cursor = sqliteHelper.getResult();
+        count = cursor.getCount();
 
-        if (preferences.getInt("count", 0) != 0) {
+        if (preferences.getInt("count", 0) > 0) {
             while (cursor.moveToNext()) {
                 int i = cursor.getInt(0);
                 String con = cursor.getString(1);
                 int setting = cursor.getInt(2);
-                if (i == cursor.getCount() - 2 && cursor.getCount() - 2 > 3) {
+                if (i == cursor.getCount() - 3) {
                     StaticData.setting3 = setting;
                     StaticData.contents3 = con;
                 }
-                if (i == cursor.getCount() - 1 && cursor.getCount() - 2 > 2) {
+                if (i == cursor.getCount() - 2) {
                     StaticData.setting2 = setting;
                     StaticData.contents2 = con;
                 }
-                if (i == cursor.getCount()) {
+                if (i == cursor.getCount() - 1) {
                     StaticData.setting1 = setting;
                     StaticData.contents1 = con;
-                    break;
                 }
             }
         }
+
         if(StaticData.contents1 != null){
             StaticData.music = MediaPlayer.create(context, mu[StaticData.setting1]);
             StaticData.music.setLooping(true);
@@ -117,29 +119,35 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        if (running == true) StaticData.music.stop();
-                        running = true;
-                        StaticData.music = MediaPlayer.create(context, mu[StaticData.setting1]);
-                        StaticData.music.setLooping(true);
-                        StaticData.music.start();
-                        break;
-                    case 1:
-                        if (running == true) StaticData.music.stop();
-                        running = true;
-                        StaticData.music = MediaPlayer.create(context, mu[StaticData.setting2]);
-                        StaticData.music.setLooping(true);
-                        StaticData.music.start();
-                        break;
-                    case 2:
-                        if (running == true) StaticData.music.stop();
-                        running = true;
-                        StaticData.music = MediaPlayer.create(context, mu[StaticData.setting3]);
-                        StaticData.music.setLooping(true);
-                        StaticData.music.start();
-                        break;
+                if(preferences.getInt("count", 0) !=0) {
+                    switch (position) {
+                        case 0:
+                            if (running == true) StaticData.music.stop();
+                            running = true;
+                            StaticData.music = MediaPlayer.create(context, mu[StaticData.setting1]);
+                            StaticData.music.setLooping(true);
+                            StaticData.music.start();
+                            break;
+                        case 1:
+                            if(preferences.getInt("count", 0) > 0) {
+                                if (running == true) StaticData.music.stop();
+                                running = true;
+                                StaticData.music = MediaPlayer.create(context, mu[StaticData.setting2]);
+                                StaticData.music.setLooping(true);
+                                StaticData.music.start();
+                            }
+                            break;
+                        case 2:
+                            if(preferences.getInt("count", 0) > 1) {
+                                if (running == true) StaticData.music.stop();
+                                running = true;
+                                StaticData.music = MediaPlayer.create(context, mu[StaticData.setting3]);
+                                StaticData.music.setLooping(true);
+                                StaticData.music.start();
+                                break;
+                            }
 
+                    }
                 }
             }
 
@@ -164,15 +172,15 @@ public class MainActivity extends AppCompatActivity {
         toggle.syncState();
         //toolbar.setNavigationIcon(R.drawable.drawer_nav);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        //View header = navigationView.inflateHeaderView(R.layout.nav_header_nevigation);
+        View header = navigationView.inflateHeaderView(R.layout.nav_header_nevigation);
 
 
         fab.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Toast.makeText(context,"편안한 마음으로 말해 주세요",Toast.LENGTH_SHORT).show();
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     voiceRecognizer.recognize();
-                    Toast.makeText(context,"편안한 마음으로 말해 주세요",Toast.LENGTH_SHORT);
                 }
                 return false;
             }
@@ -195,23 +203,28 @@ public class MainActivity extends AppCompatActivity {
                         StaticData.contents1 = results[0];
 
                         analzeresults = AnalyzeEmotion.analyzeemotion(results[0]);
-                        if (analzeresults > 3) set = (int)(Math.random()*3);
-                        else if (analzeresults > 0) set = (int)(Math.random()*8+4);
-                        else if (analzeresults == 0) set = (int)(Math.random()*12+9);
-                        else if (analzeresults < 0) set = (int)(Math.random()*15+13);
-                        else if (analzeresults < -3) set = (int)(Math.random()*18+16);
+                        if (analzeresults > 3) set = (int)(Math.random()*2);
+                        else if (analzeresults > 0) set = (int)((Math.random()*7)+3);
+                        else if (analzeresults == 0) set = (int)((Math.random()*11)+7);
+                        else if (analzeresults < 0) set = (int)((Math.random()*14)+12);
+                        else if (analzeresults < -3) set = (int)((Math.random()*17)+15);
+
+                        sqliteHelper.insert(preferences.getInt("count", 0), results[0], set);
+                        StaticData.setting3 = StaticData.setting2;
+                        StaticData.setting2 = StaticData.setting1;
+                        StaticData.setting1 = set;
 
                         if (preferences.getInt("count", 0) == 0) {
+                            StaticData.music = MediaPlayer.create(context, mu[StaticData.setting1]);
+                            StaticData.music.setLooping(true);
+                            StaticData.music.start();
                             editor.putInt("count", 1);
                             editor.commit();
                         } else {
                             editor.putInt("count", preferences.getInt("count", 0) + 1);
                             editor.commit();
                         }
-                        sqliteHelper.insert(preferences.getInt("count", 0), results[0], set);
-                        StaticData.setting3 = StaticData.setting2;
-                        StaticData.setting2 = StaticData.setting1;
-                        StaticData.setting1 = set;
+
 
                         viewPager.removeAllViews();
                         pagerAdapter = new PagerAdapter(context);
@@ -286,7 +299,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        StaticData.music.stop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
