@@ -49,20 +49,23 @@
             android:onClick="clickMute"
             android:text="stop" />
 
-        <Button
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Start" />
-
         <TextView
             android:id="@+id/txt_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_start"
             android:layout_centerHorizontal="true"
             android:singleLine="false" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:backgroundTint="#ffffff"
+            android:scaleType="center"
+            android:background="#ffffff"
+            />
 
         <ImageView
             android:id="@+id/imageView"
@@ -72,6 +75,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="62dp" />
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

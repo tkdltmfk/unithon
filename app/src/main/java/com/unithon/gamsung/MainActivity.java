@@ -3,6 +3,8 @@ package com.unithon.gamsung;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
     VoiceRecognizer voiceRecognizer;
     Handler michandler;
     VoiceRecoder recoder;
+    FloatingActionButton fab;
+    SqliteHelper sqliteHelper;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -67,6 +74,31 @@ public class MainActivity extends AppCompatActivity {
         btn_mute = (Button) findViewById(R.id.mute);
         imgview = (ImageView) findViewById(R.id.imageView);
         tv_musicName = (TextView) findViewById(R.id.musicName);
+        tv_text = (TextView) findViewById(R.id.txt_result);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        preferences = getSharedPreferences("contents",0);
+        editor = preferences.edit();
+        sqliteHelper = new SqliteHelper(this,"db.db",null,1);
+        Cursor cursor = sqliteHelper.getResult();
+
+        if(preferences.getInt("count",0) != 0) {
+            while (cursor.moveToNext()) {
+                int i = cursor.getInt(0);
+                String con = cursor.getString(1);
+                int setting = cursor.getInt(2);
+                if (i == cursor.getCount()) {
+                    if (running == true) music.stop();
+                    running = true;
+                    music = MediaPlayer.create(context, mu[setting]);
+                    music.setLooping(true);
+                    music.start();
+                    tv_musicName.setText(mu[setting]);
+                    tv_text.setText(con);
+                    imgview.setImageResource(img[setting]);
+                }
+            }
+        }
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 1);
@@ -85,9 +117,8 @@ public class MainActivity extends AppCompatActivity {
         //View header = navigationView.inflateHeaderView(R.layout.nav_header_nevigation);
 
 
-        tv_text = (TextView) findViewById(R.id.txt_result);
-        btn_voice = (Button) findViewById(R.id.btn_start);
-        btn_voice.setOnTouchListener(new View.OnTouchListener() {
+
+        fab.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -114,6 +145,15 @@ public class MainActivity extends AppCompatActivity {
                         if (analzeresults > 0) set = 1;
                         else if (analzeresults == 0) set = 2;
                         else if (analzeresults < 0) set = 3;
+
+                        if(preferences.getInt("count",0) == 0){
+                            editor.putInt("count",1);
+                            editor.commit();
+                        }else{
+                            editor.putInt("count",preferences.getInt("count",0) + 1);
+                            editor.commit();
+                        }
+                        sqliteHelper.insert(preferences.getInt("count",0),results[0],set);
 
                         if(running == true) music.stop();
                         running = true;
@@ -209,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
+        music.stop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
