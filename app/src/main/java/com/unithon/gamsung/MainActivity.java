@@ -24,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     ViewPager viewPager;
     PagerAdapter pagerAdapter;
+    LinearLayout mylist;
     String[] results;
     int analzeresults;
     int set;
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     VoiceRecognizer voiceRecognizer;
     Handler michandler;
     VoiceRecoder recoder;
-    ProgressDialog dialog;
     FloatingActionButton fab;
     SqliteHelper sqliteHelper;
     SharedPreferences preferences;
@@ -173,12 +174,20 @@ public class MainActivity extends AppCompatActivity {
         //toolbar.setNavigationIcon(R.drawable.drawer_nav);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View header = navigationView.inflateHeaderView(R.layout.nav_header_nevigation);
+        mylist = (LinearLayout) header.findViewById(R.id.mylist);
+        mylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,"클릭!",Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         fab.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Toast.makeText(context,"편안한 마음으로 말해 주세요",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"편안한 마음으로 말해 주세요",Toast.LENGTH_LONG).show();
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     voiceRecognizer.recognize();
                 }
@@ -201,13 +210,14 @@ public class MainActivity extends AppCompatActivity {
                         StaticData.contents3 = StaticData.contents2;
                         StaticData.contents2 = StaticData.contents1;
                         StaticData.contents1 = results[0];
+                        StaticData.music.stop();
 
                         analzeresults = AnalyzeEmotion.analyzeemotion(results[0]);
-                        if (analzeresults > 3) set = (int)(Math.random()*2);
+                        if (analzeresults > 2) set = (int)(Math.random()*2);
                         else if (analzeresults > 0) set = (int)((Math.random()*7)+3);
                         else if (analzeresults == 0) set = (int)((Math.random()*11)+7);
                         else if (analzeresults < 0) set = (int)((Math.random()*14)+12);
-                        else if (analzeresults < -3) set = (int)((Math.random()*17)+15);
+                        else if (analzeresults < -2) set = (int)((Math.random()*17)+15);
 
                         sqliteHelper.insert(preferences.getInt("count", 0), results[0], set);
                         StaticData.setting3 = StaticData.setting2;
@@ -229,7 +239,14 @@ public class MainActivity extends AppCompatActivity {
                         viewPager.removeAllViews();
                         pagerAdapter = new PagerAdapter(context);
                         viewPager.setAdapter(pagerAdapter);
-                        viewPager.setCurrentItem(0);
+                        if(viewPager.getCurrentItem() != 0) viewPager.setCurrentItem(0);
+                        else{
+                            StaticData.music.stop();
+                            StaticData.music = MediaPlayer.create(context, mu[StaticData.setting1]);
+                            StaticData.music.setLooping(true);
+                            StaticData.music.start();
+                        }
+
 
 
                         break;

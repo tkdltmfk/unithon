@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -22,8 +23,8 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
     Context mcontext;
     LayoutInflater mInflater;
     ImageButton btn_play, btn_pause;
-    TextView tv_musicName, tv_text;
-    ImageView imgview;
+    TextView tv_musicName, tv_text, tag1, tag2;
+    ImageView imgview, scrap;
     SqliteHelper sqliteHelper;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -79,8 +80,15 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
                     imgview.setImageResource(img[StaticData.setting1]);
                     tv_musicName = (TextView) v.findViewById(R.id.musicName);
                     tv_text = (TextView) v.findViewById(R.id.txt_result);
-                    tv_text.setText(StaticData.contents1);
+                    tv_text.setText("# " +StaticData.contents1);
                     tv_musicName.setText(mu[StaticData.setting1]);
+                    scrap = (ImageView) v.findViewById(R.id.scrap);
+                    scrap.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(mcontext,"하트 주셔서 감사합니다~",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 break;
             case 1:
@@ -104,8 +112,15 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
                     imgview.setImageResource(img[StaticData.setting2]);
                     tv_musicName = (TextView) v.findViewById(R.id.musicName);
                     tv_text = (TextView) v.findViewById(R.id.txt_result);
-                    tv_text.setText(StaticData.contents2);
+                    tv_text.setText("# " + StaticData.contents2);
                     tv_musicName.setText(mu[StaticData.setting2]);
+                    scrap = (ImageView) v.findViewById(R.id.scrap);
+                    scrap.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(mcontext,"하트 주셔서 감사합니다~",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 break;
             case  2:
@@ -129,8 +144,15 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
                     imgview.setImageResource(img[StaticData.setting3]);
                     tv_musicName = (TextView) v.findViewById(R.id.musicName);
                     tv_text = (TextView) v.findViewById(R.id.txt_result);
-                    tv_text.setText(StaticData.contents3);
+                    tv_text.setText("# " +StaticData.contents3);
                     tv_musicName.setText(mu[StaticData.setting3]);
+                    scrap = (ImageView) v.findViewById(R.id.scrap);
+                    scrap.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(mcontext,"하트 주셔서 감사합니다~",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 break;
         }

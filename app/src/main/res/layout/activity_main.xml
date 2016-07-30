@@ -22,15 +22,15 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/background"
+                android:background="@color/colorPrimary"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <com.unithon.gamsung.NotoTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="앱이름 입니다"
-                    android:textColor="@android:color/black"
+                    android:text="감성"
+                    android:textColor="#ffffff"
                     android:textSize="20dp" />
 
             </android.support.v7.widget.Toolbar>
@@ -41,16 +41,17 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background">
+            android:background="@color/colorAccent">
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right|bottom"
-                android:layout_margin="16dp"
+                android:layout_margin="25dp"
                 android:scaleType="center"
                 android:foreground="@drawable/ic_recode"
+                android:background="#ffffff"
                 app:backgroundTint="#ffffff" />
 
             <android.support.v4.view.ViewPager
@@ -58,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:context="com.unithon.gamsung.MainActivity"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:backgroundTint="#ffffff" />
         </FrameLayout>
 
 
@@ -70,7 +72,7 @@
         android:layout_width="180.67dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#323232"
+        android:background="@color/colorAccent"
         android:fitsSystemWindows="true">
 
 

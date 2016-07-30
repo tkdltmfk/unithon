@@ -5,156 +5,253 @@ package com.unithon.gamsung;
  */
 public class AnalyzeEmotion {
 
+
+
     public static int analyzeemotion(String input) {
         int counthappy = 0;
         int countsad = 0;
+        int[] happy = new int[100];
+        for(int i = 0;i<100;i++) happy[i] = 0;
+        int[] sad = new int[100];
+        for(int i = 0;i<100;i++) happy[i] = 0;
 
-        int happy1 = input.indexOf("기쁘");
-        int happy2 = input.indexOf("기쁜");
-        int happy3 = input.indexOf("즐거");
-        int happy4 = input.indexOf("즐겁");
-        int happy5 = input.indexOf("행복");
-        int happy6 = input.indexOf("보람");
-        int happy7 = input.indexOf("좋은");
-        int happy8 = input.indexOf("좋아");
-        int happy9 = input.indexOf("좋다");
-        int happy10 = input.indexOf("뿌듯");
-        int happy11 = input.indexOf("기뻐");
-        int happy12 = input.indexOf("흥미");
-        int happy13 = input.indexOf("따뜻");
-        int happy14 = input.indexOf("친절");
+        happy[0] = input.indexOf("기쁘");
+        happy[1] = input.indexOf("기쁜");
+        happy[2]= input.indexOf("즐거");
+        happy[3] = input.indexOf("즐겁");
+        happy[4] = input.indexOf("행복");
+        happy[5] = input.indexOf("보람");
+        happy[6] = input.indexOf("좋은");
+        happy[7] = input.indexOf("좋아");
+        happy[8] = input.indexOf("좋다");
+        happy[9] = input.indexOf("뿌듯");
+        happy[10] = input.indexOf("기뻐");
+        happy[11] = input.indexOf("흥미");
+        happy[12] = input.indexOf("따뜻");
+        happy[13] = input.indexOf("친절");
+        happy[14]= input.indexOf("오늘");
+        happy[15] = input.indexOf("괜찮");
+        happy[16] = input.indexOf("살고");
 
-        int sad1 = input.indexOf("슬피");
-        int sad2 = input.indexOf("슬픈");
-        int sad3 = input.indexOf("슬퍼");
-        int sad4 = input.indexOf("슬프");
-        int sad5 = input.indexOf("힘들");
-        int sad6 = input.indexOf("힘든");
-        int sad7 = input.indexOf("힘드");
-        int sad8 = input.indexOf("좋냐");
-        int sad9 = input.indexOf("우울");
-        int sad10 = input.indexOf("무서");
-        int sad11 = input.indexOf("피곤");
-        int sad12 = input.indexOf("지친");
-        int sad13 = input.indexOf("지쳐");
-        int sad14 = input.indexOf("졸립");
+        sad[0] = input.indexOf("슬피");
+        sad[1] = input.indexOf("슬픈");
+        sad[2] = input.indexOf("슬퍼");
+        sad[3] = input.indexOf("슬프");
+        sad[4] = input.indexOf("힘들");
+        sad[5] = input.indexOf("힘든");
+        sad[6] = input.indexOf("힘드");
+        sad[7] = input.indexOf("좋냐");
+        sad[8] = input.indexOf("우울");
+        sad[9] = input.indexOf("무서");
+        sad[10] = input.indexOf("피곤");
+        sad[11] = input.indexOf("지친");
+        sad[12] = input.indexOf("지쳐");
+        sad[13] = input.indexOf("졸립");
+        sad[14] = input.indexOf("졸리");
+        sad[15] = input.indexOf("짜증");
+        sad[16] = input.indexOf("심각");
 
 
-        while (happy1 != -1) {
-            happy1 = input.indexOf("기쁘", happy1 + 1);
+        while (happy[0] != -1) {
+            happy[0] = input.indexOf("기쁘", happy[0] + 1);
             counthappy++;
         }
-        while (happy2 != -1) {
-            happy2 = input.indexOf("기쁜", happy2 + 1);
+        while (happy[1] != -1) {
+            happy[1] = input.indexOf("기쁜", happy[1] + 1);
             counthappy++;
         }
-        while (happy3 != -1) {
-            happy3 = input.indexOf("즐거", happy3 + 1);
+        while (happy[2]!= -1) {
+            happy[2] = input.indexOf("즐거", happy[2] + 1);
             counthappy++;
         }
-        while (happy4 != -1) {
-            happy4 = input.indexOf("즐겁", happy4 + 1);
+        while (happy[3] != -1) {
+            happy[3] = input.indexOf("즐겁", happy[3] + 1);
             counthappy++;
         }
-        while (happy5 != -1) {
-            happy5 = input.indexOf("행복", happy5 + 1);
+        while (happy[4] != -1) {
+            happy[4] = input.indexOf("행복", happy[4] + 1);
             counthappy++;
         }
-        while (happy6 != -1) {
-            happy6 = input.indexOf("보람", happy6 + 1);
+        while (happy[5] != -1) {
+            happy[5] = input.indexOf("보람", happy[5] + 1);
             counthappy++;
         }
-        while (happy7 != -1) {
-            happy7 = input.indexOf("좋은", happy7 + 1);
+        while (happy[6] != -1) {
+            happy[6] = input.indexOf("좋은", happy[6] + 1);
             counthappy++;
         }
-        while (happy8 != -1) {
-            happy8 = input.indexOf("좋아", happy8 + 1);
+        while (happy[7] != -1) {
+            happy[7] = input.indexOf("좋아", happy[7] + 1);
             counthappy++;
         }
-        while (happy9 != -1) {
-            happy9 = input.indexOf("좋다", happy9 + 1);
+        while (happy[8] != -1) {
+            happy[8] = input.indexOf("좋다", happy[8] + 1);
             counthappy++;
         }
-        while (happy10 != -1) {
-            happy10 = input.indexOf("뿌듯", happy10 + 1);
+        while (happy[9] != -1) {
+            happy[9] = input.indexOf("뿌듯", happy[9] + 1);
             counthappy++;
         }
-        while (happy11 != -1) {
-            happy11 = input.indexOf("기뻐", happy11 + 1);
+        while (happy[10] != -1) {
+            happy[10] = input.indexOf("기뻐", happy[10] + 1);
             counthappy++;
         }
-        while (happy12 != -1) {
-            happy12 = input.indexOf("흥미", happy12 + 1);
+        while (happy[11] != -1) {
+            happy[11] = input.indexOf("흥미", happy[11] + 1);
             counthappy++;
         }
-        while (happy13 != -1) {
-            happy13 = input.indexOf("따뜻", happy13 + 1);
+        while (happy[12] != -1) {
+            happy[12] = input.indexOf("따뜻", happy[12] + 1);
             counthappy++;
         }
-        while (happy14 != -1) {
-            happy14 = input.indexOf("친절", happy14 + 1);
+        while (happy[13] != -1) {
+            happy[13] = input.indexOf("친절", happy[13] + 1);
+            counthappy++;
+        }
+        while (happy[14] != -1) {
+            happy[14] = input.indexOf("오늘", happy[14] + 1);
+            counthappy++;
+        }
+        while (happy[15] != -1) {
+            happy[15] = input.indexOf("괜찮", happy[15] + 1);
+            counthappy++;
+        }
+        while (happy[16] != -1) {
+            happy[16] = input.indexOf("살고", happy[16] + 1);
             counthappy++;
         }
 
-        while (sad1 != -1) {
-            sad1 = input.indexOf("슬피", sad1 + 1);
+        while (sad[0] != -1) {
+            sad[0] = input.indexOf("슬피", sad[0] + 1);
             countsad++;
         }
-        while (sad2 != -1) {
-            sad2 = input.indexOf("슬픈", sad2 + 1);
+        while (sad[1] != -1) {
+            sad[1] = input.indexOf("슬픈", sad[1] + 1);
             countsad++;
         }
-        while (sad3 != -1) {
-            sad3 = input.indexOf("슬퍼", sad3 + 1);
+        while (sad[2] != -1) {
+            sad[2] = input.indexOf("슬퍼", sad[2] + 1);
             countsad++;
         }
-        while (sad4 != -1) {
-            sad4 = input.indexOf("슬프", sad4 + 1);
+        while (sad[3] != -1) {
+            sad[3] = input.indexOf("슬프", sad[3] + 1);
             countsad++;
         }
-        while (sad5 != -1) {
-            sad5 = input.indexOf("힘들", sad5 + 1);
+        while (sad[4] != -1) {
+            sad[4] = input.indexOf("힘들", sad[4] + 1);
             countsad++;
         }
-        while (sad6 != -1) {
-            sad6 = input.indexOf("힘든", sad6 + 1);
+        while (sad[5] != -1) {
+            sad[5] = input.indexOf("힘든", sad[5] + 1);
             countsad++;
         }
-        while (sad7 != -1) {
-            sad7 = input.indexOf("힘드", sad7 + 1);
+        while (sad[6] != -1) {
+            sad[6] = input.indexOf("힘드", sad[6] + 1);
             countsad++;
         }
-        while (sad8 != -1) {
-            sad8 = input.indexOf("좋냐", sad8+ 1);
+        while (sad[7] != -1) {
+            sad[7] = input.indexOf("좋냐", sad[7]+ 1);
             countsad++;
         }
-        while (sad9 != -1) {
-            sad9 = input.indexOf("우울", sad9+ 1);
+        while (sad[8] != -1) {
+            sad[8] = input.indexOf("우울", sad[8]+ 1);
             countsad++;
         }
-        while (sad10 != -1) {
-            sad10 = input.indexOf("무서", sad10+ 1);
+        while (sad[9] != -1) {
+            sad[9] = input.indexOf("무서", sad[9]+ 1);
             countsad++;
         }
-        while (sad11 != -1) {
-            sad11 = input.indexOf("피곤", sad11+ 1);
+        while (sad[10] != -1) {
+            sad[10] = input.indexOf("피곤", sad[10]+ 1);
             countsad++;
         }
-        while (sad12 != -1) {
-            sad12 = input.indexOf("지친", sad12+ 1);
+        while (sad[11] != -1) {
+            sad[11] = input.indexOf("지친", sad[11]+ 1);
             countsad++;
         }
-        while (sad13 != -1) {
-            sad13 = input.indexOf("지쳐", sad13+ 1);
+        while (sad[12] != -1) {
+            sad[12] = input.indexOf("지쳐", sad[12]+ 1);
             countsad++;
         }
-        while (sad14 != -1) {
-            sad14 = input.indexOf("졸립", sad14+ 1);
+        while (sad[13] != -1) {
+            sad[13] = input.indexOf("졸립", sad[13]+ 1);
+            countsad++;
+        }
+        while (sad[14] != -1) {
+            sad[14] = input.indexOf("졸리", sad[14]+ 1);
+            countsad++;
+        }
+        while (sad[15] != -1) {
+            sad[15] = input.indexOf("짜증", sad[15]+ 1);
+            countsad++;
+        }
+        while (sad[16] != -1) {
+            sad[16] = input.indexOf("심각", sad[16]+ 1);
             countsad++;
         }
 
         return counthappy - countsad;
+    }
+
+    public static String TagEmotion(String input){
+        String a = "";
+        int check = analyzeemotion(input);
+
+        int[] happy = new int[100];
+        for(int i = 0;i<100;i++) happy[i] = 0;
+        int[] sad = new int[100];
+        for(int i = 0;i<100;i++) happy[i] = 0;
+
+        happy[0] = input.indexOf("기쁘");
+        happy[1] = input.indexOf("기쁜");
+        happy[2]= input.indexOf("즐거");
+        happy[3] = input.indexOf("즐겁");
+        happy[4] = input.indexOf("행복");
+        happy[5] = input.indexOf("보람");
+        happy[6] = input.indexOf("좋은");
+        happy[7] = input.indexOf("좋아");
+        happy[8] = input.indexOf("좋다");
+        happy[9] = input.indexOf("뿌듯");
+        happy[10] = input.indexOf("기뻐");
+        happy[11] = input.indexOf("흥미");
+        happy[12] = input.indexOf("따뜻");
+        happy[13] = input.indexOf("친절");
+        happy[14]= input.indexOf("오늘");
+        happy[15] = input.indexOf("괜찮");
+        happy[16] = input.indexOf("살고");
+
+        sad[0] = input.indexOf("슬피");
+        sad[1] = input.indexOf("슬픈");
+        sad[2] = input.indexOf("슬퍼");
+        sad[3] = input.indexOf("슬프");
+        sad[4] = input.indexOf("힘들");
+        sad[5] = input.indexOf("힘든");
+        sad[6] = input.indexOf("힘드");
+        sad[7] = input.indexOf("좋냐");
+        sad[8] = input.indexOf("우울");
+        sad[9] = input.indexOf("무서");
+        sad[10] = input.indexOf("피곤");
+        sad[11] = input.indexOf("지친");
+        sad[12] = input.indexOf("지쳐");
+        sad[13] = input.indexOf("졸립");
+        sad[14] = input.indexOf("졸리");
+        sad[15] = input.indexOf("짜증");
+        sad[16] = input.indexOf("심각");
+
+        if(check>0){
+            for(int i =0 ; i<17 ; i++){
+                if(happy[i] != 0 ){
+                    a = input.substring(happy[i] - 1, happy[i]);
+                }
+            }
+        }else if(check<0){
+            for(int i =0 ; i<17 ; i++){
+                if(sad[i] != 0 ){
+                    a = input.substring(sad[i] - 1, sad[i]);
+                }
+            }
+        }
+        return a;
     }
 
 
