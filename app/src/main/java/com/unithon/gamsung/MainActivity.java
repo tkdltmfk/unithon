@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
                         StaticData.contents3 = StaticData.contents2;
                         StaticData.contents2 = StaticData.contents1;
                         StaticData.contents1 = results[0];
-                        StaticData.music.stop();
 
                         analzeresults = AnalyzeEmotion.analyzeemotion(results[0]);
                         if (analzeresults > 2) set = (int)(Math.random()*2);
@@ -316,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
+        StaticData.music.stop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

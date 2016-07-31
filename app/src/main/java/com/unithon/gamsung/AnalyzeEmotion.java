@@ -200,7 +200,7 @@ public class AnalyzeEmotion {
         int[] happy = new int[100];
         for(int i = 0;i<100;i++) happy[i] = 0;
         int[] sad = new int[100];
-        for(int i = 0;i<100;i++) happy[i] = 0;
+        for(int i = 0;i<100;i++) sad[i] = 0;
 
         happy[0] = input.indexOf("기쁘");
         happy[1] = input.indexOf("기쁜");
@@ -241,13 +241,13 @@ public class AnalyzeEmotion {
         if(check>0){
             for(int i =0 ; i<17 ; i++){
                 if(happy[i] != 0 ){
-                    a = input.substring(happy[i] - 1, happy[i]);
+                    a = input.substring(happy[i]+1, happy[i]+2);
                 }
             }
         }else if(check<0){
             for(int i =0 ; i<17 ; i++){
                 if(sad[i] != 0 ){
-                    a = input.substring(sad[i] - 1, sad[i]);
+                    a = input.substring(sad[i]+1, sad[i]+2);
                 }
             }
         }

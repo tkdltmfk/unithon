@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="300dp">
-        <ImageView
+        <!--<ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/ic_heart"
@@ -17,7 +17,7 @@
             android:layout_marginRight="27dp"
             android:layout_marginEnd="27dp"
             android:layout_marginBottom="26dp"
-            android:id="@+id/scrap"/>
+            android:id="@+id/scrap"/>-->
 
         <ImageView
             android:id="@+id/imageView"
@@ -88,7 +88,7 @@
         android:orientation="horizontal"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp">
-        <TextView
+        <!--<TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tag1"
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tag2"
             android:textSize="15sp"
-            android:textColor="#fad9d9" />
+            android:textColor="#fad9d9" />-->
     </LinearLayout>
 
 

@@ -76,19 +76,21 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
                             clickPause(v);
                         }
                     });
-                    imgview = (ImageView) v.findViewById(R.id.imageView);
-                    imgview.setImageResource(img[StaticData.setting1]);
                     tv_musicName = (TextView) v.findViewById(R.id.musicName);
                     tv_text = (TextView) v.findViewById(R.id.txt_result);
-                    tv_text.setText("# " +StaticData.contents1);
+                    tv_text.setText("# " + StaticData.contents1);
                     tv_musicName.setText(mu[StaticData.setting1]);
-                    scrap = (ImageView) v.findViewById(R.id.scrap);
+                    /*scrap = (ImageView) v.findViewById(R.id.scrap);
                     scrap.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Toast.makeText(mcontext,"하트 주셔서 감사합니다~",Toast.LENGTH_SHORT).show();
                         }
                     });
+                    tag1 = (TextView) v.findViewById(R.id.tag1);
+                    tag1.setText(AnalyzeEmotion.TagEmotion(StaticData.contents1));*/
+                    imgview = (ImageView) v.findViewById(R.id.imageView);
+                    imgview.setImageResource(img[StaticData.setting1]);
                 }
                 break;
             case 1:
@@ -108,19 +110,22 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
                             clickPause(v);
                         }
                     });
-                    imgview = (ImageView) v.findViewById(R.id.imageView);
-                    imgview.setImageResource(img[StaticData.setting2]);
                     tv_musicName = (TextView) v.findViewById(R.id.musicName);
                     tv_text = (TextView) v.findViewById(R.id.txt_result);
                     tv_text.setText("# " + StaticData.contents2);
                     tv_musicName.setText(mu[StaticData.setting2]);
-                    scrap = (ImageView) v.findViewById(R.id.scrap);
+                    /*scrap = (ImageView) v.findViewById(R.id.scrap);
                     scrap.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Toast.makeText(mcontext,"하트 주셔서 감사합니다~",Toast.LENGTH_SHORT).show();
                         }
                     });
+                    tag1 = (TextView) v.findViewById(R.id.tag1);
+                    tag1.setText(AnalyzeEmotion.TagEmotion(StaticData.contents2));*/
+                    imgview = (ImageView) v.findViewById(R.id.imageView);
+                    imgview.setImageResource(img[StaticData.setting2]);
+
                 }
                 break;
             case  2:
@@ -140,19 +145,22 @@ public class PagerAdapter extends android.support.v4.view.PagerAdapter {
                             clickPause(v);
                         }
                     });
-                    imgview = (ImageView) v.findViewById(R.id.imageView);
-                    imgview.setImageResource(img[StaticData.setting3]);
                     tv_musicName = (TextView) v.findViewById(R.id.musicName);
                     tv_text = (TextView) v.findViewById(R.id.txt_result);
                     tv_text.setText("# " +StaticData.contents3);
                     tv_musicName.setText(mu[StaticData.setting3]);
-                    scrap = (ImageView) v.findViewById(R.id.scrap);
+                    /*scrap = (ImageView) v.findViewById(R.id.scrap);
                     scrap.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Toast.makeText(mcontext,"하트 주셔서 감사합니다~",Toast.LENGTH_SHORT).show();
                         }
                     });
+                    tag1 = (TextView) v.findViewById(R.id.tag1);
+                    tag1.setText(AnalyzeEmotion.TagEmotion(StaticData.contents3));*/
+                    imgview = (ImageView) v.findViewById(R.id.imageView);
+                    imgview.setImageResource(img[StaticData.setting3]);
+
                 }
                 break;
         }
